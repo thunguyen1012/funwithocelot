@@ -1,6 +1,4 @@
-using System;
-
-namespace Order.WebAPI
+namespace Order.Domain
 {
     public class Order
     {

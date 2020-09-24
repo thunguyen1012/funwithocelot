@@ -10,3 +10,9 @@ Logging
 
 3. API Gateway and console app
 It's just a demonstration for services management and consume them.
+
+4. Ref
+https://github.com/ardalis/CleanArchitecture
+
+TODO:
+- Mediator
