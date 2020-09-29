@@ -1,5 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
+using Common.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -24,6 +27,9 @@ namespace Order.WebAPI
                     // context.Database.Migrate();
                     context.Database.EnsureCreated();
                     SeedData.Initialize(services);
+
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -33,6 +39,11 @@ namespace Order.WebAPI
             }
 
             host.Run();
+
+            IMediator mediator = host.Services.GetService<IMediator>();
+            var subscriber = host.Services.GetService<ISubscriber>();
+
+            subscriber.Listen(mediator);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -41,6 +52,12 @@ namespace Order.WebAPI
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureAppConfiguration((builderContext, config) =>
+                {
+                    var env = builderContext.HostingEnvironment;
+                    config.AddJsonFile("autofac.json");
+                })
+                .ConfigureServices(services => services.AddAutofac());
     }
 }

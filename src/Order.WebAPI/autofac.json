@@ -1,0 +1,11 @@
+{
+  "modules": [
+    {
+      "type": "Order.Infrastructure.ServiceBus.BusModule",
+      "properties": {
+        "BrokerList": "10.211.55.2:9092",
+        "Topic": "jambov32"
+      }
+    }
+  ]
+}

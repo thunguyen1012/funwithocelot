@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using Autofac.Features.Variance;
 using Common.Interfaces;
 using MediatR;
 using MediatR.Pipeline;
+using Order.Core.Commands;
 using Order.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Reflection;
@@ -55,32 +57,38 @@ namespace Order.Infrastructure
 
         private void RegisterMediator(ContainerBuilder builder)
         {
+            builder.RegisterSource(new ContravariantRegistrationSource());
+
             builder
                 .RegisterType<Mediator>()
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
 
-            builder.Register<ServiceFactory>(context =>
-            {
-                var c = context.Resolve<IComponentContext>();
-                return t => c.Resolve(t);
-            });
+            //var mediatrOpenTypes = new[]
+            //{
+            //    typeof(IRequestHandler<,>),
+            //    typeof(IRequestExceptionHandler<,,>),
+            //    typeof(IRequestExceptionAction<,>),
+            //    typeof(INotificationHandler<>),
+            //};
 
-            var mediatrOpenTypes = new[]
-            {
-                typeof(IRequestHandler<,>),
-                typeof(IRequestExceptionHandler<,,>),
-                typeof(IRequestExceptionAction<,>),
-                typeof(INotificationHandler<>),
-            };
+            //foreach (var mediatrOpenType in mediatrOpenTypes)
+            //{
+            //    builder
+            //        .RegisterAssemblyTypes(assemblies.ToArray())
+            //        .AsClosedTypesOf(mediatrOpenType)
+            //        .AsImplementedInterfaces();
+            //}
 
-            foreach (var mediatrOpenType in mediatrOpenTypes)
-            {
-                builder
-                .RegisterAssemblyTypes(assemblies.ToArray())
-                .AsClosedTypesOf(mediatrOpenType)
-                .AsImplementedInterfaces();
-            }
+            builder
+                .Register<ServiceFactory>(ctx =>
+                {
+                    var c = ctx.Resolve<IComponentContext>();
+                    return t => { object o; return c.TryResolve(t, out o) ? o : null; };
+                })
+                .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(typeof(CreateOrderCommand).GetTypeInfo().Assembly).AsImplementedInterfaces(); // via assembly scan
         }
 
         private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)

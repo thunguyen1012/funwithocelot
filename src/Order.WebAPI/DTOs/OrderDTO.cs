@@ -1,12 +1,13 @@
 ﻿using Order.Core.Entities;
+using System;
 
 namespace Order.WebAPI.DTOs
 {
     public class OrderDTO
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int PaymentId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ProductId { get; set; }
+        public Guid PaymentId { get; set; }
         public OrderStatus Status { get; set; }
 
         public static OrderDTO FromEntity(Core.Entities.Order source)
