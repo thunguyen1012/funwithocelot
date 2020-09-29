@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Product.WebAPI.Controllers
+namespace Inventory.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

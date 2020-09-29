@@ -1,4 +1,4 @@
-namespace Product.WebAPI
+namespace Inventory.WebAPI
 {
     public class Product
     {

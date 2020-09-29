@@ -32,6 +32,7 @@ namespace Order.WebAPI
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new DefaultInfrastructureModule(env.EnvironmentName == "Development"));
+            builder.RegisterModule(new BusModule());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{39A0DD85-B01C-4086-A147-37DA273F28E2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{39A0DD85-B01C-4086-A147-37DA273F28E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.WebAPI", "src\Product.WebAPI\Product.WebAPI.csproj", "{522F7F65-B2E2-496D-98B7-DB8FCE50A629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.WebAPI", "src\Product.WebAPI\Inventory.WebAPI.csproj", "{522F7F65-B2E2-496D-98B7-DB8FCE50A629}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{B251F1D5-F9CD-44A6-B59F-007617A08F21}"
 EndProject

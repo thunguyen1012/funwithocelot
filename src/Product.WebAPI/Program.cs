@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Product.WebAPI
+namespace Inventory.WebAPI
 {
     public class Program
     {

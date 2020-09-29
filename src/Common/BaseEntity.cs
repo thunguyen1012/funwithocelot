@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Common.Interfaces;
+using System;
 
 namespace Common
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : IEntity
     {
-        public int Id { get; set; }
-
-        public List<BaseDomainEvent> Events = new List<BaseDomainEvent>();
+        public Guid Id { get;  set; }
     }
 }
