@@ -27,9 +27,6 @@ namespace Order.WebAPI
                     // context.Database.Migrate();
                     context.Database.EnsureCreated();
                     SeedData.Initialize(services);
-
-
-                    
                 }
                 catch (Exception ex)
                 {
@@ -39,11 +36,6 @@ namespace Order.WebAPI
             }
 
             host.Run();
-
-            IMediator mediator = host.Services.GetService<IMediator>();
-            var subscriber = host.Services.GetService<ISubscriber>();
-
-            subscriber.Listen(mediator);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -58,6 +50,9 @@ namespace Order.WebAPI
                     var env = builderContext.HostingEnvironment;
                     config.AddJsonFile("autofac.json");
                 })
-                .ConfigureServices(services => services.AddAutofac());
+                .ConfigureServices(services =>
+                {
+                    services.AddAutofac();
+                });
     }
 }

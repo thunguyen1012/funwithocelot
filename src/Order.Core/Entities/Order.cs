@@ -21,6 +21,7 @@ namespace Order.Core.Entities
             Register<OrderCreatedDomainEvent>(When);
             Register<OrderStatusUpdatedDomainEvent>(When);
             Register<OrderProductUpdatedDomainEvent>(When);
+            Register<OrderRequestedPaymentDomainEvent>(When);
         }
 
         public static Order Create() => new Order();
@@ -40,6 +41,11 @@ namespace Order.Core.Entities
             Raise(OrderProductUpdatedDomainEvent.Create(this, productId));
         }
 
+        public void RequestPayment()
+        {
+            Raise(OrderRequestedPaymentDomainEvent.Create(this));
+        }
+
         protected void When(OrderCreatedDomainEvent @event)
         {
             Id = @event.AggregateRootId;
@@ -54,11 +60,17 @@ namespace Order.Core.Entities
         {
             ProductId = @event.ProductId;
         }
+
+        protected void When(OrderRequestedPaymentDomainEvent @event)
+        {
+            Status = @event.Status;
+        }
     }
 
     public enum OrderStatus
     {
         New,
+        RequestedPayment,
         Paid,
         Cancelled
     }

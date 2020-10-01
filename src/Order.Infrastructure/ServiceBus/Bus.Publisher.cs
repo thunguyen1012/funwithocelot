@@ -16,7 +16,7 @@ namespace Order.Infrastructure.ServiceBus
         public PublisherBus(string brokerList, string topic)
         {
             this.brokerList = brokerList;
-            this.topic = "topic";
+            this.topic = "order";
             config = new ClientConfig(new Dictionary<string, string>()
                 {
                     {
@@ -28,7 +28,7 @@ namespace Order.Infrastructure.ServiceBus
         public async Task Publish(BaseDomainEvent domainEvent)
         {
             var val = JsonConvert.SerializeObject(domainEvent, Formatting.Indented);
-            var key = domainEvent.GetType().AssemblyQualifiedName;
+            var key = domainEvent.GetType().Name;
 
             using var producer = new ProducerBuilder<string, string>(config).Build();
             await producer.ProduceAsync(topic, new Message<string, string> { Key = key, Value = val });

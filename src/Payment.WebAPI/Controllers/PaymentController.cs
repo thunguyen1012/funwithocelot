@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Payment.Core.Interfaces;
+using Payment.WebAPI.DTOs;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Payment.WebAPI.Controllers
 {
@@ -8,22 +12,27 @@ namespace Payment.WebAPI.Controllers
     [Route("api/[controller]")]
     public class PaymentController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<Payment> Get()
+        private readonly IMediator mediator;
+        private readonly IPaymentService paymentService;
+
+        public PaymentController(IMediator mediator, IPaymentService paymentService)
         {
-            return new List<Payment> 
+            this.mediator = mediator;
+            this.paymentService = paymentService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var payments = await paymentService.GetPaymentsAsync();
+
+            var paymentDTOs = payments.Aggregate(new List<PaymentDTO>(), (result, item) =>
             {
-                new Payment 
-                {
-                    Amount = 10, 
-                    Date = DateTime.UtcNow
-                },
-                new Payment
-                {
-                    Amount = 20,
-                    Date = DateTime.UtcNow
-                },
-            };
+                result.Add(PaymentDTO.FromEntity(item));
+                return result;
+            });
+
+            return Ok(paymentDTOs);
         }
     }
 }

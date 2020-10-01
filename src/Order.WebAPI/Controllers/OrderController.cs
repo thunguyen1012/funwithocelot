@@ -40,9 +40,18 @@ namespace Order.WebAPI.Controllers
         public async Task<IActionResult> Post(CreateOrderCommand command)
         {
             var id = await mediator.Send(command);
+
+            // Pay
+            Pay(new RequestPaymentCommand(id));
+
             return Ok(id);
 
             //return CreatedAtRoute("GetBlog", new { id = id }, id);
+        }
+
+        private async void Pay(RequestPaymentCommand command)
+        {
+            var id = await mediator.Send(command);
         }
     }
 }
