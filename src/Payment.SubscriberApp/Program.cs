@@ -43,7 +43,7 @@ namespace Payment.SubscriberApp
         {
             ContainerBuilder builder = new ContainerBuilder();
 
-            string connectionString = Configuration.GetConnectionString("SqliteConnection");
+            string connectionString = Configuration.GetConnectionString("DbConnection");
             services.AddDbContext(connectionString);
 
             builder.Populate(services);

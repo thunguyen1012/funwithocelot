@@ -25,8 +25,6 @@ namespace Payment.WebAPI
             var payment1 = Core.Entities.Payment.Create();
             payment1.Id = Guid.Parse("54C4AA63-6337-41CA-8B70-B8EEB8B77C8F");
             payment1.OrderId = Guid.Parse("54C4AA63-6337-41CA-8B71-B8EEB8B77C8F");
-            payment1.Created = DateTime.UtcNow;
-            payment1.CreatedBy = "admin";
             payment1.Status = Core.Entities.PaymentStatus.New;
 
             dbContext.Payments.Add(payment1);

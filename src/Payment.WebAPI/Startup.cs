@@ -22,7 +22,7 @@ namespace Payment.WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("SqliteConnection");
+            string connectionString = Configuration.GetConnectionString("DbConnection");
             services.AddDbContext(connectionString);
 
             services.AddControllers();

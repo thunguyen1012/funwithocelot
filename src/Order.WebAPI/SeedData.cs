@@ -26,16 +26,12 @@ namespace Order.WebAPI
             order1.Id = Guid.Parse("54C4AA63-6337-41CA-8B70-B8EEB8B77C8F");
             order1.ProductId = Guid.Parse("54C4AA63-6337-41CA-8B71-B8EEB8B77C8F");
             order1.PaymentId = Guid.Parse("54C4AA63-6337-41CA-8B72-B8EEB8B77C8F");
-            order1.Created = DateTime.UtcNow;
-            order1.CreatedBy = "admin";
             order1.Status = Core.Entities.OrderStatus.New;
 
             var order2 = Core.Entities.Order.Create();
             order2.Id = Guid.Parse("54C4AA63-6337-41CA-8B80-B8EEB8B77C8F");
             order2.ProductId = Guid.Parse("54C4AA63-6337-41CA-8B81-B8EEB8B77C8F");
             order2.PaymentId = Guid.Parse("54C4AA63-6337-41CA-8B82-B8EEB8B77C8F");
-            order2.Created = DateTime.UtcNow;
-            order2.CreatedBy = "admin";
             order2.Status = Core.Entities.OrderStatus.New;
 
             dbContext.Orders.Add(order1);

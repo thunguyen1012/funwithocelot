@@ -5,15 +5,10 @@ using System;
 
 namespace Payment.Core.Entities
 {
-    public class Payment : BaseAggregateRoot, IAuditableEntity
+    public class Payment : BaseAggregateRoot
     {
         public Guid OrderId { get; set; }
         public PaymentStatus Status { get; set; }
-
-        public DateTime Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? LastModified { get; set; }
-        public string LastModifiedBy { get; set; }
 
         private Payment()
         {

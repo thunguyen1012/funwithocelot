@@ -8,6 +8,6 @@ namespace Order.Infrastructure
     {
         public static void AddDbContext(this IServiceCollection services, string connectionString) =>
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite(connectionString));
+                options.UseSqlServer(connectionString));
     }
 }
