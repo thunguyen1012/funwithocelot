@@ -5,7 +5,7 @@ using System;
 
 namespace Order.Core.CommandHandlers
 {
-    public class RequestPaymentCommandHandler : RequestHandler<RequestPaymentCommand, Guid>
+    public class RequestPaymentCommandHandler : RequestHandler<RequestPaymentCommand>
     {
         private readonly IPublisher bus;
         private readonly IRepository repository;
@@ -16,15 +16,15 @@ namespace Order.Core.CommandHandlers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        protected override Guid Handle(RequestPaymentCommand command)
+        protected override void Handle(RequestPaymentCommand command)
         {
             var order = repository.GetByIdAsync<Entities.Order>(command.OrderId).GetAwaiter().GetResult();
             order.RequestPayment();
 
             // TODO VERIFY
-            bus.Publish(order.GetEvents(), command.Header).GetAwaiter().GetResult();
+            bus.Publish(order.GetEvents(), command.Header);
 
-            return order.Id;
+            repository.UpdateAsync(order);
         }
     }
 }

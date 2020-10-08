@@ -45,8 +45,6 @@ namespace Order.WebAPI.Controllers
             Pay(new RequestPaymentCommand(id));
 
             return Ok(id);
-
-            //return CreatedAtRoute("GetBlog", new { id = id }, id);
         }
 
         private async void Pay(RequestPaymentCommand command)

@@ -18,14 +18,11 @@ namespace Order.Core.EventHandlers
         protected override void Handle(PaymentStatusUpdatedDomainEvent domainEvent)
         {
             var order = repository.GetByIdAsync<Entities.Order>(domainEvent.OrderId).GetAwaiter().GetResult();
+
+            order.PaymentId = domainEvent.AggregateRootId;
             order.UpdateStatus(Entities.OrderStatus.Paid);
 
-            order.Status = Entities.OrderStatus.Paid;
-            repository.UpdateAsync(order).GetAwaiter();
-
-            //or
-            //order.Apply(domainEvent);
-            //var result = repository.AddAsync(order).GetAwaiter().GetResult();
+            repository.UpdateAsync(order);
         }
     }
 }

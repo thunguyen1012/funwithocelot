@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace Order.Core.Commands
 {
     [DataContract]
-    public class RequestPaymentCommand : CommandBase, IRequest<Guid>
+    public class RequestPaymentCommand : CommandBase, IRequest
     {
         [DataMember]
         public Guid OrderId { get; private set; }

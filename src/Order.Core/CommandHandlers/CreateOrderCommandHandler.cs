@@ -26,10 +26,9 @@ namespace Order.Core.CommandHandlers
             order.UpdateStatus(Entities.OrderStatus.New);
 
             // TODO VERIFY
-            bus.Publish(order.GetEvents(), command.Header).GetAwaiter().GetResult();
+            bus.Publish(order.GetEvents(), command.Header);
 
-            repository.AddAsync(order).GetAwaiter().GetResult();
-            //order.Apply(order.GetEvents());
+            repository.AddAsync(order);
 
             return order.Id;
         }

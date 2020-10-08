@@ -16,3 +16,9 @@ https://github.com/ardalis/CleanArchitecture
 
 TODO:
 - Mediator
+
+Command -> events -> publish to kafka
+		-> entity -> save to db
+
+Event -> Command
+      -> entity -> save to db

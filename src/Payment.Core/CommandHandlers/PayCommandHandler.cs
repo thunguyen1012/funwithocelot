@@ -26,10 +26,10 @@ namespace Payment.Core.CommandHandlers
             payment.UpdateOrderId(command.OrderId);
             payment.UpdateStatus(Entities.PaymentStatus.New);
 
-            // TODO VERIFY
-            bus.Publish(payment.GetEvents(), command.Header).GetAwaiter().GetResult();
+            bus.Publish(payment.GetEvents(), command.Header);
 
-            //repository.AddAsync(payment).GetAwaiter().GetResult();
+            repository.AddAsync(payment);
+
 
             return payment.Id;
         }
