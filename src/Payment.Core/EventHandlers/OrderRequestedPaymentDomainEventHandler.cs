@@ -6,7 +6,6 @@ using System;
 namespace Payment.Core.EventHandlers
 {
     public class OrderRequestedPaymentDomainEventHandler
-        //: RequestHandler<OrderRequestedPaymentDomainEvent, Guid>
         : RequestHandler<OrderRequestedPaymentDomainEvent>
     {
         private readonly IMediator mediator;
@@ -19,10 +18,8 @@ namespace Payment.Core.EventHandlers
 
         protected override void Handle(OrderRequestedPaymentDomainEvent domainEvent)
         {
-            // Call directly???
             var paymentCommand = new PayCommand(domainEvent.AggregateRootId);
-            var id = mediator.Send(paymentCommand).GetAwaiter().GetResult();
-            //return id;
+            mediator.Send(paymentCommand);
         }
     }
 }

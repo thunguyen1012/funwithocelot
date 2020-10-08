@@ -25,7 +25,6 @@ namespace Order.Core.CommandHandlers
             order.UpdateProductId(command.ProductId);
             order.UpdateStatus(Entities.OrderStatus.New);
 
-            // TODO VERIFY
             bus.Publish(order.GetEvents(), command.Header);
 
             repository.AddAsync(order);

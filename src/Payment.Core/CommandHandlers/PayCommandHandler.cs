@@ -24,7 +24,8 @@ namespace Payment.Core.CommandHandlers
 
             payment.Start();
             payment.UpdateOrderId(command.OrderId);
-            payment.UpdateStatus(Entities.PaymentStatus.New);
+            payment.UpdateStatus(Entities.PaymentStatus.Paid);
+            payment.Update(); // TODO When enough order Id and status then publish event
 
             bus.Publish(payment.GetEvents(), command.Header);
 

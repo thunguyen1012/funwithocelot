@@ -5,7 +5,7 @@ using System;
 
 namespace Order.Core.EventHandlers
 {
-    public class PaymentStatusUpdatedDomainEventHandler : RequestHandler<PaymentStatusUpdatedDomainEvent>
+    public class PaymentStatusUpdatedDomainEventHandler : RequestHandler<PaymentUpdatedDomainEvent>
     {
         private readonly IRepository repository;
 
@@ -15,7 +15,7 @@ namespace Order.Core.EventHandlers
                 throw new ArgumentNullException(nameof(repository));
         }
 
-        protected override void Handle(PaymentStatusUpdatedDomainEvent domainEvent)
+        protected override void Handle(PaymentUpdatedDomainEvent domainEvent)
         {
             var order = repository.GetByIdAsync<Entities.Order>(domainEvent.OrderId).GetAwaiter().GetResult();
 

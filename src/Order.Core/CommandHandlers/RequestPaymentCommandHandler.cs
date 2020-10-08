@@ -21,7 +21,6 @@ namespace Order.Core.CommandHandlers
             var order = repository.GetByIdAsync<Entities.Order>(command.OrderId).GetAwaiter().GetResult();
             order.RequestPayment();
 
-            // TODO VERIFY
             bus.Publish(order.GetEvents(), command.Header);
 
             repository.UpdateAsync(order);

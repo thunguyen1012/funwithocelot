@@ -15,6 +15,7 @@ namespace Payment.Core.Entities
             Register<PaymentCreatedDomainEvent>(When);
             Register<PaymentOrderUpdatedDomainEvent>(When);
             Register<PaymentStatusUpdatedDomainEvent>(When);
+            Register<PaymentUpdatedDomainEvent>(When);
         }
 
         public static Payment Create() => new Payment();
@@ -34,6 +35,11 @@ namespace Payment.Core.Entities
             Raise(PaymentStatusUpdatedDomainEvent.Create(this, status));
         }
 
+        public void Update()
+        {
+            Raise(PaymentUpdatedDomainEvent.Create(this, Status, OrderId));
+        }
+
         protected void When(PaymentCreatedDomainEvent @event)
         {
             Id = @event.AggregateRootId;
@@ -47,6 +53,11 @@ namespace Payment.Core.Entities
         protected void When(PaymentStatusUpdatedDomainEvent @event)
         {
             Status = @event.Status;
+        }
+
+        protected void When(PaymentUpdatedDomainEvent @event)
+        {
+            
         }
     }
 

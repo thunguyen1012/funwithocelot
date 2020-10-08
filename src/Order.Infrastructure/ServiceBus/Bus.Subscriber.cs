@@ -63,9 +63,9 @@ namespace Order.Infrastructure.ServiceBus
                             var eventType = Type.GetType($"Order.Core.Events.{@event.Message.Key}");
 
                             // HACK for testing
-                            if (@event.Message.Key.Equals("PaymentStatusUpdatedDomainEvent", StringComparison.CurrentCultureIgnoreCase))
+                            if (@event.Message.Key.Equals("PaymentUpdatedDomainEvent", StringComparison.CurrentCultureIgnoreCase))
                             {
-                                eventType = typeof(Core.Events.PaymentStatusUpdatedDomainEvent);
+                                eventType = typeof(Core.Events.PaymentUpdatedDomainEvent);
                                 var domainEvent = (BaseDomainEvent)JsonConvert.DeserializeObject(@event.Message.Value, eventType);
                                 mediator.Send(domainEvent).Wait();
                             }

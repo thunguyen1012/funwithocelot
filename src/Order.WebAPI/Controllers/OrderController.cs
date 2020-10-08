@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Order.Core.Commands;
 using Order.Core.Interfaces;
 using Order.WebAPI.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Order.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> ListOrders()
         {
             var orders = await orderService.GetOrdersAsync();
 
@@ -37,9 +38,9 @@ namespace Order.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateOrderCommand command)
+        public async Task<IActionResult> CreateOrder(CreateOrderViewModel createOrderViewModel)
         {
-            var id = await mediator.Send(command);
+            var id = await mediator.Send(new CreateOrderCommand(createOrderViewModel.ProductId));
 
             // Pay
             Pay(new RequestPaymentCommand(id));
@@ -47,9 +48,14 @@ namespace Order.WebAPI.Controllers
             return Ok(id);
         }
 
-        private async void Pay(RequestPaymentCommand command)
+        private void Pay(RequestPaymentCommand command)
         {
-            var id = await mediator.Send(command);
+            mediator.Send(command);
         }
+    }
+
+    public class CreateOrderViewModel
+    {
+        public Guid ProductId { get; set; }
     }
 }
