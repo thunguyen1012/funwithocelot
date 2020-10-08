@@ -22,3 +22,11 @@ Command -> events -> publish to kafka
 
 Event -> Command
       -> entity -> save to db
+
+Should share events among services?
+- No, we don't want to couple services
+
+Kafka concerns
++ Saga
++ Order of message
++ Lost message
