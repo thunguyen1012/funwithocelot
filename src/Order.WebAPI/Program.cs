@@ -1,6 +1,4 @@
 using Autofac.Extensions.DependencyInjection;
-using Common.Interfaces;
-using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

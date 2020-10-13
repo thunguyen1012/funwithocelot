@@ -1,16 +1,17 @@
-﻿using Common;
-using Common.Interfaces;
-using MediatR;
+﻿using Common.Interfaces;
 using System;
 
-namespace Payment.Core.Events
+namespace Common.Messages.Order.Events
 {
-    public class OrderRequestedPaymentDomainEvent : BaseDomainEvent//, IRequest<Guid>
+    public class OrderRequestedPaymentDomainEvent : BaseDomainEvent
     {
+        public OrderStatus Status { get; }
+
         public OrderRequestedPaymentDomainEvent(Guid aggregateRootId, int version,
-            DateTime createdDate, IHeader header)
+            DateTime createdDate, IHeader header, OrderStatus status)
             : base(aggregateRootId, version, createdDate, header)
         {
+            Status = status;
         }
 
         public static OrderRequestedPaymentDomainEvent Create(BaseAggregateRoot aggregateRoot)
@@ -19,9 +20,17 @@ namespace Payment.Core.Events
                 throw new ArgumentNullException("aggregateRoot");
 
             var domainEvent = new OrderRequestedPaymentDomainEvent(
-                aggregateRoot.Id, aggregateRoot.Version, DateTime.UtcNow, null);
+                aggregateRoot.Id, aggregateRoot.Version, DateTime.UtcNow, null, OrderStatus.RequestedPayment);
 
             return domainEvent;
         }
+    }
+
+    public enum OrderStatus
+    {
+        New,
+        RequestedPayment,
+        Paid,
+        Cancelled
     }
 }

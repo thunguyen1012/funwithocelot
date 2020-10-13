@@ -1,6 +1,5 @@
 using Common;
-using Common.Interfaces;
-using Payment.Core.Events;
+using Common.Messages.Payment.Events;
 using System;
 
 namespace Payment.Core.Entities
@@ -32,12 +31,12 @@ namespace Payment.Core.Entities
 
         public void UpdateStatus(PaymentStatus status)
         {
-            Raise(PaymentStatusUpdatedDomainEvent.Create(this, status));
+            Raise(PaymentStatusUpdatedDomainEvent.Create(this, (Common.Messages.Payment.Events.PaymentStatus)status));
         }
 
         public void Update()
         {
-            Raise(PaymentUpdatedDomainEvent.Create(this, Status, OrderId));
+            Raise(PaymentUpdatedDomainEvent.Create(this, (Common.Messages.Payment.Events.PaymentStatus)Status, OrderId));
         }
 
         protected void When(PaymentCreatedDomainEvent @event)
@@ -52,12 +51,11 @@ namespace Payment.Core.Entities
 
         protected void When(PaymentStatusUpdatedDomainEvent @event)
         {
-            Status = @event.Status;
+            Status = (PaymentStatus)@event.Status;
         }
 
         protected void When(PaymentUpdatedDomainEvent @event)
         {
-            
         }
     }
 

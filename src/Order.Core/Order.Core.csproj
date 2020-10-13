@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Messages\Common.Messages.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 

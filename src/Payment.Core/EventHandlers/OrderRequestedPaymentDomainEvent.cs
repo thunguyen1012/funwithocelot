@@ -1,16 +1,16 @@
-﻿using MediatR;
+﻿using Common.Messages.Order.Events;
+using MediatR;
 using Payment.Core.Commands;
-using Payment.Core.Events;
 using System;
 
 namespace Payment.Core.EventHandlers
 {
-    public class OrderRequestedPaymentDomainEventHandler
+    public class PaymentRequestedDomainEventHandler
         : RequestHandler<OrderRequestedPaymentDomainEvent>
     {
         private readonly IMediator mediator;
 
-        public OrderRequestedPaymentDomainEventHandler(IMediator mediator)
+        public PaymentRequestedDomainEventHandler(IMediator mediator)
         {
             this.mediator = mediator ??
                 throw new ArgumentNullException(nameof(mediator));

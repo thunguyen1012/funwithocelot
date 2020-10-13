@@ -54,16 +54,13 @@ namespace Payment.Infrastructure.ServiceBus
                     {
                         try
                         {
-                            // TODO https://www.confluent.io/blog/put-several-event-types-kafka-topic/
-                            var eventType = Type.GetType($"Payment.Core.Events.{@event.Message.Key}");
-
-                            // HACK for testing
-                            if (@event.Message.Key.Equals("OrderRequestedPaymentDomainEvent", StringComparison.CurrentCultureIgnoreCase))
+                            var eventType = Type.GetType(@event.Message.Key);
+                            if (eventType != null)
                             {
-                                eventType = typeof(Core.Events.OrderRequestedPaymentDomainEvent);
                                 var domainEvent = (BaseDomainEvent)JsonConvert.DeserializeObject(@event.Message.Value, eventType);
                                 mediator.Send(domainEvent).Wait();
                             }
+
                         }
                         catch (Exception ex)
                         {

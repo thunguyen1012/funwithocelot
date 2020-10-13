@@ -2,7 +2,7 @@
 using Common.Interfaces;
 using System;
 
-namespace Order.Core.Events
+namespace Common.Messages.Payment.Events
 {
     public class PaymentUpdatedDomainEvent : BaseDomainEvent
     {
@@ -27,13 +27,5 @@ namespace Order.Core.Events
 
             return domainEvent;
         }
-    }
-
-    public enum PaymentStatus
-    {
-        New,
-        Inprocess,
-        Paid,
-        Failed
     }
 }

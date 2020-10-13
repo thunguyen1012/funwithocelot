@@ -2,7 +2,7 @@
 using Common.Interfaces;
 using System;
 
-namespace Payment.Core.Events
+namespace Common.Messages.Payment.Events
 {
     public class PaymentOrderUpdatedDomainEvent : BaseDomainEvent
     {

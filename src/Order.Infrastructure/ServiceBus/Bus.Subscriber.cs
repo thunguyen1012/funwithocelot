@@ -16,6 +16,7 @@ namespace Order.Infrastructure.ServiceBus
 
         public SubscriberBus(string brokerList, string topic)
         {
+            // vnic0 - 10.211.55.2
             this.brokerList = brokerList;
             this.topic = "payment";
             config = new ClientConfig(new Dictionary<string, string>()
@@ -23,7 +24,7 @@ namespace Order.Infrastructure.ServiceBus
                     {
                         "bootstrap.servers", "10.211.55.2:9092" //brokerList
                     },
-                    { "group.id", "jambo-consumer" },
+                    { "group.id", "funwithocelot" },
                     { "enable.auto.commit", "true" },
                     { "auto.commit.interval.ms", "5000" },
                     { "statistics.interval.ms", "60000" }
@@ -54,18 +55,9 @@ namespace Order.Infrastructure.ServiceBus
                     {
                         try
                         {
-                            //Type eventType = Type.GetType(@event.Message.Key);
-                            //var domainEvent = (BaseDomainEvent)JsonConvert.DeserializeObject(@event.Message.Value, eventType);
-                            //mediator.Send(domainEvent).Wait();
-
-
-                            // TODO https://www.confluent.io/blog/put-several-event-types-kafka-topic/
-                            var eventType = Type.GetType($"Order.Core.Events.{@event.Message.Key}");
-
-                            // HACK for testing
-                            if (@event.Message.Key.Equals("PaymentUpdatedDomainEvent", StringComparison.CurrentCultureIgnoreCase))
+                            var eventType = Type.GetType(@event.Message.Key);
+                            if (eventType != null)
                             {
-                                eventType = typeof(Core.Events.PaymentUpdatedDomainEvent);
                                 var domainEvent = (BaseDomainEvent)JsonConvert.DeserializeObject(@event.Message.Value, eventType);
                                 mediator.Send(domainEvent).Wait();
                             }

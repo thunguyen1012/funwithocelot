@@ -1,6 +1,5 @@
 using Common;
-using Common.Interfaces;
-using Order.Core.Events;
+using Common.Messages.Order.Events;
 using System;
 
 namespace Order.Core.Entities
@@ -28,7 +27,7 @@ namespace Order.Core.Entities
 
         public void UpdateStatus(OrderStatus status)
         {
-            Raise(OrderStatusUpdatedDomainEvent.Create(this, status));
+            Raise(OrderStatusUpdatedDomainEvent.Create(this, (Common.Messages.Order.Events.OrderStatus)status));
         }
 
         public void UpdateProductId(Guid productId)
@@ -48,7 +47,7 @@ namespace Order.Core.Entities
 
         protected void When(OrderStatusUpdatedDomainEvent @event)
         {
-            Status = @event.Status;
+            Status = (OrderStatus)@event.Status;
         }
 
         protected void When(OrderProductUpdatedDomainEvent @event)
@@ -58,7 +57,7 @@ namespace Order.Core.Entities
 
         protected void When(OrderRequestedPaymentDomainEvent @event)
         {
-            Status = @event.Status;
+            Status = (OrderStatus)@event.Status;
         }
     }
 

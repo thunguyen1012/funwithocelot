@@ -28,7 +28,7 @@ namespace Order.Infrastructure.ServiceBus
         public async Task Publish(BaseDomainEvent domainEvent)
         {
             var val = JsonConvert.SerializeObject(domainEvent, Formatting.Indented);
-            var key = domainEvent.GetType().Name;
+            var key = domainEvent.GetType().AssemblyQualifiedName;
 
             using var producer = new ProducerBuilder<string, string>(config).Build();
             await producer.ProduceAsync(topic, new Message<string, string> { Key = key, Value = val });

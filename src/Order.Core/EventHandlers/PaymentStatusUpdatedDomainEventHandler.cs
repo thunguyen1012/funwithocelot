@@ -1,6 +1,6 @@
 ﻿using Common.Interfaces;
+using Common.Messages.Payment.Events;
 using MediatR;
-using Order.Core.Events;
 using System;
 
 namespace Order.Core.EventHandlers

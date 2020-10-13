@@ -1,14 +1,12 @@
-﻿using Common;
-using Common.Interfaces;
-using Order.Core.Entities;
+﻿using Common.Interfaces;
 using System;
 
-namespace Order.Core.Events
+namespace Common.Messages.Order.Events
 {
     public class OrderStatusUpdatedDomainEvent : BaseDomainEvent
     {
         public OrderStatusUpdatedDomainEvent(Guid aggregateRootId, int version,
-            DateTime createdDate, IHeader header, Order.Core.Entities.OrderStatus status)
+            DateTime createdDate, IHeader header, OrderStatus status)
             : base(aggregateRootId, version, createdDate, header)
         {
             Status = status;
@@ -16,7 +14,7 @@ namespace Order.Core.Events
 
         public OrderStatus Status { get; }
 
-        public static OrderStatusUpdatedDomainEvent Create(BaseAggregateRoot aggregateRoot, Entities.OrderStatus status)
+        public static OrderStatusUpdatedDomainEvent Create(BaseAggregateRoot aggregateRoot, OrderStatus status)
         {
             if (aggregateRoot == null)
                 throw new ArgumentNullException("aggregateRoot");

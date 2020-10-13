@@ -1,9 +1,8 @@
-﻿using Common;
-using Common.Interfaces;
+﻿using Common.Interfaces;
 using MediatR;
 using System;
 
-namespace Order.Core.Events
+namespace Common.Messages.Order.Events
 {
     public class OrderCreatedDomainEvent : BaseDomainEvent, IRequest<Guid>
     {

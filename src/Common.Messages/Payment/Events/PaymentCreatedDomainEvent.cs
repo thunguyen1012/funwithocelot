@@ -1,9 +1,8 @@
-﻿using Common;
-using Common.Interfaces;
+﻿using Common.Interfaces;
 using MediatR;
 using System;
 
-namespace Payment.Core.Events
+namespace Common.Messages.Payment.Events
 {
     public class PaymentCreatedDomainEvent : BaseDomainEvent, IRequest<Guid>
     {

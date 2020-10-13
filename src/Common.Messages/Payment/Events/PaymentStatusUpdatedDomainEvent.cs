@@ -2,22 +2,22 @@
 using Common.Interfaces;
 using System;
 
-namespace Payment.Core.Events
+namespace Common.Messages.Payment.Events
 {
     public class PaymentStatusUpdatedDomainEvent : BaseDomainEvent
     {
         public PaymentStatusUpdatedDomainEvent(Guid aggregateRootId, int version,
-            DateTime createdDate, IHeader header, Entities.PaymentStatus status)
+            DateTime createdDate, IHeader header, PaymentStatus status)
             : base(aggregateRootId, version, createdDate, header)
         {
             Status = status;
         }
 
-        public Entities.PaymentStatus Status { get; }
+        public PaymentStatus Status { get; }
 
         public static PaymentStatusUpdatedDomainEvent Create(
-            BaseAggregateRoot aggregateRoot, 
-            Entities.PaymentStatus status)
+            BaseAggregateRoot aggregateRoot,
+            PaymentStatus status)
         {
             if (aggregateRoot == null)
                 throw new ArgumentNullException("aggregateRoot");
@@ -27,5 +27,13 @@ namespace Payment.Core.Events
 
             return domainEvent;
         }
+    }
+
+    public enum PaymentStatus
+    {
+        New,
+        Inprocess,
+        Paid,
+        Failed
     }
 }

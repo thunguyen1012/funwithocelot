@@ -1,8 +1,7 @@
-﻿using Common;
-using Common.Interfaces;
+﻿using Common.Interfaces;
 using System;
 
-namespace Order.Core.Events
+namespace Common.Messages.Order.Events
 {
     public class OrderProductUpdatedDomainEvent : BaseDomainEvent
     {
