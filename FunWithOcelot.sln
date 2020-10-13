@@ -52,7 +52,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.SubscriberApp", "src\Order.SubscriberApp\Order.SubscriberApp.csproj", "{ED2D85E9-11A5-41CC-AC11-D652F7519AD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Messages", "src\Common.Messages\Common.Messages.csproj", "{CBDE7177-DD1F-431A-8741-E709150383D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Messages", "src\Common.Messages\Common.Messages.csproj", "{CBDE7177-DD1F-431A-8741-E709150383D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.WebAPI.Client", "src\Inventory.WebAPI.Client\Inventory.WebAPI.Client.csproj", "{EE316EAB-134E-4CF2-BCE0-805B1D953117}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,10 @@ Global
 		{CBDE7177-DD1F-431A-8741-E709150383D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBDE7177-DD1F-431A-8741-E709150383D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBDE7177-DD1F-431A-8741-E709150383D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE316EAB-134E-4CF2-BCE0-805B1D953117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE316EAB-134E-4CF2-BCE0-805B1D953117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE316EAB-134E-4CF2-BCE0-805B1D953117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE316EAB-134E-4CF2-BCE0-805B1D953117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +139,7 @@ Global
 		{2C37AB38-133C-4AD4-97D9-2E82C1EA976E} = {B251F1D5-F9CD-44A6-B59F-007617A08F21}
 		{4CF12616-BB93-4AF9-887A-075F8356C595} = {B251F1D5-F9CD-44A6-B59F-007617A08F21}
 		{ED2D85E9-11A5-41CC-AC11-D652F7519AD1} = {665AFF57-22B1-47BE-A632-4F21F76B4243}
+		{EE316EAB-134E-4CF2-BCE0-805B1D953117} = {39A0DD85-B01C-4086-A147-37DA273F28E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1374AF81-1864-415F-AD76-0D50D7403D19}

@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Inventory.WebAPI.Client\Inventory.WebAPI.Client.csproj" />
     <ProjectReference Include="..\Order.Core\Order.Core.csproj" />
   </ItemGroup>
 

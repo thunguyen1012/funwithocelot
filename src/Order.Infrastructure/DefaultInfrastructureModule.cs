@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Features.Variance;
 using Common.Interfaces;
+using Inventory.WebAPI.Client;
 using MediatR;
 using MediatR.Pipeline;
 using Order.Core.Commands;
@@ -52,6 +53,10 @@ namespace Order.Infrastructure
                 .As<Core.Interfaces.IOrderService>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<StockClient>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
+
             RegisterMediator(builder);
         }
 
@@ -63,22 +68,6 @@ namespace Order.Infrastructure
                 .RegisterType<Mediator>()
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
-
-            //var mediatrOpenTypes = new[]
-            //{
-            //    typeof(IRequestHandler<,>),
-            //    typeof(IRequestExceptionHandler<,,>),
-            //    typeof(IRequestExceptionAction<,>),
-            //    typeof(INotificationHandler<>),
-            //};
-
-            //foreach (var mediatrOpenType in mediatrOpenTypes)
-            //{
-            //    builder
-            //        .RegisterAssemblyTypes(assemblies.ToArray())
-            //        .AsClosedTypesOf(mediatrOpenType)
-            //        .AsImplementedInterfaces();
-            //}
 
             builder
                 .Register<ServiceFactory>(ctx =>
