@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Payment.Infrastructure;
 using System;
+using System.Threading;
 
 namespace Payment.SubscriberApp
 {
@@ -59,7 +60,14 @@ namespace Payment.SubscriberApp
             IMediator mediator = serviceProvider.GetService<IMediator>();
             ISubscriber subscriber = serviceProvider.GetService<ISubscriber>();
 
-            subscriber.Listen(mediator);
+            var cancellationTokenSource = new CancellationTokenSource();
+
+            Console.CancelKeyPress += (_, e) => {
+                e.Cancel = true; // prevent the process from terminating.
+                cancellationTokenSource.Cancel();
+            };
+
+            subscriber.Listen(mediator, cancellationTokenSource.Token);
         }
     }
 }

@@ -1,10 +1,15 @@
 {
   "modules": [
     {
-      "type": "Payment.Infrastructure.ServiceBus.BusModule",
+      "type": "Payment.Infrastructure.BusModule, Payment.Infrastructure",
       "properties": {
         "BrokerList": "10.211.55.2:9092",
         "Topic": "payment"
+      }
+    },
+    {
+      "type": "Payment.Infrastructure.DefaultInfrastructureModule, Payment.Infrastructure",
+      "properties": {
       }
     }
   ]

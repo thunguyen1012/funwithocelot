@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Order.Infrastructure;
 using System;
+using System.Threading;
 
 namespace Order.SubscriberApp
 {
@@ -58,8 +59,14 @@ namespace Order.SubscriberApp
         {
             IMediator mediator = serviceProvider.GetService<IMediator>();
             ISubscriber subscriber = serviceProvider.GetService<ISubscriber>();
+            var cancellationTokenSource = new CancellationTokenSource();
 
-            subscriber.Listen(mediator);
+            Console.CancelKeyPress += (_, e) => {
+                e.Cancel = true; // prevent the process from terminating.
+                cancellationTokenSource.Cancel();
+            };
+
+            subscriber.Listen(mediator, cancellationTokenSource.Token);
         }
     }
 }

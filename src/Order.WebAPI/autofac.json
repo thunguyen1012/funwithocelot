@@ -1,10 +1,15 @@
 {
   "modules": [
     {
-      "type": "Order.Infrastructure.ServiceBus.BusModule",
+      "type": "Order.Infrastructure.BusModule, Order.Infrastructure",
       "properties": {
         "BrokerList": "10.211.55.2:9092",
         "Topic": "order"
+      }
+    },
+    {
+      "type": "Order.Infrastructure.DefaultInfrastructureModule, Order.Infrastructure",
+      "properties": {
       }
     }
   ]

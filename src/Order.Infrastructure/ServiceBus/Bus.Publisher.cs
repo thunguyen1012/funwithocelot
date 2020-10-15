@@ -9,18 +9,17 @@ namespace Order.Infrastructure.ServiceBus
 {
     public class PublisherBus : IPublisher
     {
-        public readonly string brokerList;
-        public readonly string topic;
+        public string BrokerList { get; set; }
+        public string Topic { get; set; }
+
         private ClientConfig config;
 
-        public PublisherBus(string brokerList, string topic)
+        public PublisherBus()
         {
-            this.brokerList = brokerList;
-            this.topic = "order";
             config = new ClientConfig(new Dictionary<string, string>()
                 {
                     {
-                        "bootstrap.servers", "10.211.55.2:9092" //brokerList
+                        "bootstrap.servers", BrokerList
                     }
                 });
         }
@@ -31,7 +30,7 @@ namespace Order.Infrastructure.ServiceBus
             var key = domainEvent.GetType().AssemblyQualifiedName;
 
             using var producer = new ProducerBuilder<string, string>(config).Build();
-            await producer.ProduceAsync(topic, new Message<string, string> { Key = key, Value = val });
+            await producer.ProduceAsync(Topic, new Message<string, string> { Key = key, Value = val });
         }
 
         public async Task Publish(IEnumerable<BaseDomainEvent> domainEvents, Common.Interfaces.IHeader header)

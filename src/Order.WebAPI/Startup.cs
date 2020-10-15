@@ -1,4 +1,5 @@
 using Autofac;
+using Autofac.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +32,7 @@ namespace Order.WebAPI
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new DefaultInfrastructureModule(env.EnvironmentName == "Development"));
-            builder.RegisterModule(new BusModule());
+            builder.RegisterModule(new ConfigurationModule(Configuration));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
