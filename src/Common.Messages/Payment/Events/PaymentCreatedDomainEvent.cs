@@ -4,7 +4,7 @@ using System;
 
 namespace Common.Messages.Payment.Events
 {
-    public class PaymentCreatedDomainEvent : BaseDomainEvent, IRequest<Guid>
+    public class PaymentCreatedDomainEvent : BaseDomainEvent
     {
         public PaymentCreatedDomainEvent(Guid aggregateRootId, int version,
             DateTime createdDate, IHeader header)

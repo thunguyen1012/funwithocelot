@@ -4,7 +4,7 @@ using System;
 
 namespace Common.Messages.Order.Events
 {
-    public class OrderCreatedDomainEvent : BaseDomainEvent, IRequest<Guid>
+    public class OrderCreatedDomainEvent : BaseDomainEvent
     {
         public OrderCreatedDomainEvent(Guid aggregateRootId, int version,
             DateTime createdDate, IHeader header)
