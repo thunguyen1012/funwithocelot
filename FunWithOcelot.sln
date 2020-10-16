@@ -27,11 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{01F3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.WebAPI", "src\Logging.WebAPI\Logging.WebAPI.csproj", "{1301ACD8-8585-4698-9B16-CC68889B976A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{0D99E8A7-55CE-4E9F-AB44-59CA29A2CB3F}"
-	ProjectSection(SolutionItems) = preProject
-		Readme.txt = Readme.txt
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Core", "src\Order.Core\Order.Core.csproj", "{A86B3A88-E684-4C58-B41E-87A0F240377E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Infrastructure", "src\Order.Infrastructure\Order.Infrastructure.csproj", "{3C76B82F-5DE8-4AEC-9291-56AF97B6BE57}"
@@ -47,14 +42,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5A1B63C0-33D5-48E9-BD2C-0BB60E2671EA}"
 	ProjectSection(SolutionItems) = preProject
 		setup\docker-compose.yml = setup\docker-compose.yml
-		dbs\payment.sqlite = dbs\payment.sqlite
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.SubscriberApp", "src\Order.SubscriberApp\Order.SubscriberApp.csproj", "{ED2D85E9-11A5-41CC-AC11-D652F7519AD1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Messages", "src\Common.Messages\Common.Messages.csproj", "{CBDE7177-DD1F-431A-8741-E709150383D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.WebAPI.Client", "src\Inventory.WebAPI.Client\Inventory.WebAPI.Client.csproj", "{EE316EAB-134E-4CF2-BCE0-805B1D953117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.WebAPI.Client", "src\Inventory.WebAPI.Client\Inventory.WebAPI.Client.csproj", "{EE316EAB-134E-4CF2-BCE0-805B1D953117}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
