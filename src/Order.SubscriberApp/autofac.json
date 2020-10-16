@@ -4,7 +4,8 @@
       "type": "Order.Infrastructure.BusModule, Order.Infrastructure",
       "properties": {
         "BrokerList": "10.211.55.2:9092",
-        "Topic": "order"
+        "ToTopic": "order",
+        "FromTopic": "payment"
       }
     },
     {

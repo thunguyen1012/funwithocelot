@@ -3,7 +3,6 @@ using Autofac.Features.Variance;
 using Common.Interfaces;
 using Inventory.WebAPI.Client;
 using MediatR;
-using MediatR.Pipeline;
 using Order.Core.Commands;
 using Order.Infrastructure.Data;
 using System.Collections.Generic;
